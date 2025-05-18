@@ -1,0 +1,534 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Muli', sans-serif;
+    color: #e7ebee;
+}
+
+body {
+    background: radial-gradient(circle at center, #444444, #9d9d9d);
+}
+
+.background-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 80px;
+}
+
+.top-nav {
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 44px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(to bottom, rgba(231, 235, 238, 0.5), transparent);
+}
+
+.nav-links-left, .nav-links-right {
+    display: flex;
+    gap: 20px;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: #e7ebee;
+    font-size: 24px;
+    font-weight: normal;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+.nav-work:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #b92528;
+    cursor: url("data:image/svg+xml;utf8,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23b92528' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E"), auto;
+}
+
+.logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 20px;
+}
+
+.logo-container a {
+    display: block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.logo-container a:hover {
+    transform: scale(1.05);
+}
+
+.logo-container img {
+    width: 250px;
+    height: auto;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    background-color: #444444;
+    padding: 20px;
+    color: #e7ebee;
+}
+
+/* Show main-content when 'Work' link in header is hovered */
+header.top-nav:has(a.nav-work:hover) + main.main-content {
+    display: flex;
+    position: absolute;
+    top: 12vh; /* Matches header height */
+    left: 0; /* Changed from 44px for full width */
+    right: 0; /* Added for full width */
+    z-index: 10;
+    height: auto;
+    flex-grow: 0; /* Override default flex-grow */
+    padding: 10px 30px 15px 32px; /* Adjusted padding-top to move content higher */
+    background-color: #3a3a3a; /* Slightly different background for dropdown visibility */
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: center; /* Changed from space-evenly to center the group of columns */
+    gap: 30px; /* Added gap for spacing between columns */
+    align-items: flex-start; /* Changed from default 'center' to align columns to the top */
+}
+
+.content-section {
+    flex: 0 0 auto; /* Changed from flex: 1 to make columns content-width */
+    padding: 0 15px;
+}
+
+.content-section h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #e7ebee;
+    margin-bottom: 15px;
+}
+
+.content-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-section li {
+    font-size: 16px;
+    color: #e7ebee;
+    margin-bottom: 8px;
+}
+
+.main-content h1 {
+    font-size: 40px;
+    font-weight: bold;
+    color: #e7ebee;
+    margin: 0 0 20px 0;
+}
+
+.main-content p {
+    font-size: 24px;
+    color: #e7ebee;
+    margin: 0;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    color: #e7ebee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* CSS for placeholder pages */
+.page-content {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 30px;
+    color: #e7ebee;
+}
+
+.page-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.page-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.work-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.category {
+    flex: 1;
+    min-width: 250px;
+}
+
+.category h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category li {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.contact-form {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+/* Active navigation state */
+.top-nav a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #b92528;
+}
+
+/* Card Stack Styles */
+.card-stack-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: calc(100vh - 12vh - 80px); */ /* Removed to reduce hoverable area */
+    min-height: 450px; /* Set min-height to fit fanned cards */
+    max-width: 750px; /* Constrain width for centering */
+    margin-left: auto; /* Center container block */
+    margin-right: auto; /* Center container block */
+    /* margin-top: 20px; */ /* Removed */
+    /* margin-bottom: 20px; */ /* Removed */
+    /* border: 1px solid red; */ /* For debugging container bounds */
+}
+
+.stacked-card {
+    position: absolute;
+    width: 285px; /* Increased size by 50% from 190px */
+    height: auto; /* Maintain aspect ratio */
+    /* border-radius: 8px; */ /* Removed for transparent padding effect */
+    transition: transform 0.5s ease-in-out, z-index 0s; /* Changed z-index transition to 0s to prevent artifacts */
+    cursor: pointer;
+    display: block; /* Ensure <a> tag behaves like a block for width/height */
+}
+
+.stacked-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Match border-radius of the link if any part of it is visible */
+}
+
+/* Special case for Display Picture to ensure it's properly sized */
+#card-about img {
+    width: 100%; /* Ensures full width */
+    object-fit: cover; /* Helps maintain proportional scaling */
+}
+
+#card-work img {
+    width: 130%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Initial positions and z-index for stacking (bottom to top) */
+#card-about { /* Polaroid - About page - Center reference point */
+    transform: rotate(2deg) translate(0px, 0px);
+    z-index: 4; /* Topmost */
+}
+#card-work { /* Ace of Spades - Work page - Left of center */
+    transform: rotate(-14deg) translate(-90px, 35px); /* Further increased offset to be more revealing */
+    z-index: 3;
+}
+#card-play { /* Mushroom - Play page - Bottom right */
+    transform: rotate(12deg) translate(70px, 90px); /* Increased offset to be more revealing */
+    z-index: 2;
+}
+#card-contact { /* Ticket - Contact page - Top right */
+    transform: rotate(23deg) translate(80px, -70px); /* Increased offset to be more revealing */
+    z-index: 1;
+}
+
+/* Hover effect: Fan out - Zigzag (more dramatic) */
+.card-stack-container:hover #card-work { /* Ace - Far Left */
+    transform: translateX(-250px) translateY(-40px) rotate(-25deg); /* More dramatic zigzag */
+    z-index: 5;
+}
+.card-stack-container:hover #card-about { /* Polaroid - Center-Left */
+    transform: translateX(-80px) translateY(60px) rotate(15deg); /* More dramatic zigzag */
+    z-index: 8;
+}
+.card-stack-container:hover #card-contact { /* Ticket - Center-Right */
+    transform: translateX(80px) translateY(-60px) rotate(-15deg); /* More dramatic zigzag */
+    z-index: 7;
+}
+.card-stack-container:hover #card-play { /* Mushroom - Far Right */
+    transform: translateX(250px) translateY(40px) rotate(25deg); /* More dramatic zigzag */
+    z-index: 6;
+}
+
+/* Contact Page Specific Styles */
+body.contact-page-active {
+    background: linear-gradient(to bottom right, #707070, #333333); /* Approximate gradient from image */
+    color: #ffffff;
+    font-family: 'Arial', sans-serif; /* Placeholder font */
+}
+
+.contact-page {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Align items to the top */
+    min-height: calc(100vh - 100px); /* Assuming header is around 60-80px, footer ~20px */
+    padding: 50px 5%;
+    gap: 30px; /* Space between left and right sections */
+}
+
+.contact-info-section {
+    flex-basis: 45%;
+    padding-top: 50px; /* To align with the form which has some top padding due to shape */
+}
+
+.contact-info-section h1 {
+    font-size: 4.5em; /* Large "Get In Touch!" */
+    /* IMPORTANT: Bauer Bodoni is likely a commercial font. 
+       You will need to license it and use @font-face to include it in your project. */
+    font-family: 'Bauer Bodoni', serif; /* Added Bauer Bodoni with serif fallback */
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.contact-details p {
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.contact-details p i {
+    margin-right: 10px;
+    color: #cccccc; /* Light icon color */
+}
+
+.contact-details a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.contact-details a:hover {
+    color: #dddddd;
+}
+
+.social-media {
+    margin-top: 30px;
+}
+
+.social-media a {
+    color: #ffffff;
+    font-size: 1.8em;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-media a:hover {
+    color: #cccccc; /* Or a brand color */
+}
+
+.contact-form-section {
+    flex-basis: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the form container */
+}
+
+.form-container {
+    background-color: #F0F2F5; 
+    /* New border-radius values for a more organic shape */
+    border-top-left-radius: 120px 80px;  /* More pronounced curve, wider than tall */
+    border-top-right-radius: 70px 90px;   /* Tighter at top, more vertical emphasis */
+    border-bottom-right-radius: 80px 100px; /* Softer bottom right, more vertical */
+    border-bottom-left-radius: 100px 150px; /* Very pronounced sweep at bottom left, much taller than wide */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: relative;
+    max-width: 420px; /* Reduced width to emphasize verticality with height */
+    width: 90%;
+    margin: 40px auto; 
+    overflow: visible; 
+    /* padding: 1px; */ /* Removed this */
+    display: block; /* Ensuring it behaves as a block element */
+}
+
+/* Remove styles for the no-longer-existing image */
+/* .contact-card-image { ... } */
+
+.form-container::after { /* For the star */
+    content: '\272D'; /* Unicode hexagram/six-pointed star character. Could also use ★ (U+2605) or an SVG. Using a character for simplicity. */
+    font-size: 30px; /* Adjust size of star */
+    color: #003366; /* Dark blue/teal color for the star - adjust to match image */
+    position: absolute;
+    top: 15px;  /* Adjust to position correctly */
+    right: 25px; /* Adjust to position correctly */
+    transform: rotate(15deg); /* Slight rotation if needed */
+    z-index: 2; /* Above form-container background, but form content (z-index 1 on form) should be above this if form itself has no background */
+}
+
+.form-container form {
+    position: relative; /* Changed from absolute, will sit inside the form-container normally */
+    /* top: 0; left: 0; width: 100%; height: 100%; */ /* No longer needed if form is not absolute */
+    padding: 50px 40px 40px 40px; /* Adjusted padding: Top, L/R, Bottom */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    z-index: 1; /* Will be on top of the form-container's background */
+    /* overflow-y: auto; */ /* Might not be needed if container height is sufficient */
+    background-color: transparent; /* Ensure form itself is transparent */
+}
+
+/* Ensure form elements are visible on potentially varied image background */
+.form-container .form-group label {
+    display: block;
+    font-size: 0.9em;
+    color: #333333; /* Darker label text - ensure this matches image */
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-container .form-group input[type="text"],
+.form-container .form-group input[type="email"],
+.form-container .form-group input[type="tel"],
+.form-container .form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: none; /* Remove general border if any */
+    border-radius: 25px; /* Rounded input fields */
+    background-color: rgba(0,0,0,0.6); /* Slightly adjusted for visibility, ensure matches image */
+    color: #e7ebee; /* Ensure text is light */
+    font-size: 1em;
+    border-bottom: 2px dashed #888888; /* Dotted line effect from image */
+    box-sizing: border-box; /* Ensure padding doesn't add to width */
+}
+
+.form-container .form-group input::placeholder,
+.form-container .form-group textarea::placeholder {
+    color: #a0a0a0;
+}
+
+.form-container .form-group textarea {
+    resize: none; /* Prevent resizing */
+    min-height: 120px; /* Based on image */
+}
+
+.form-container .submit-btn {
+    display: block; /* Or inline-block for centering via text-align on parent */
+    width: auto; /* Not full width */
+    padding: 10px 0; /* Vertical padding, no horizontal for text button */
+    background-color: transparent;
+    color: #333333; /* Dark text for button, matching labels/image */
+    border: none;
+    border-radius: 0; /* No border-radius for text button */
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 2px; /* Or 1px, adjust to match image */
+    align-self: center; /* Center the button within the flex column of the form */
+    margin-top: 10px; /* Add some space above it, may need adjustment from form gap */
+}
+
+/* Adjustments for star_graphic if it was removed and we need space */
+/* .star-graphic {  -- Removing this block
+    position: absolute;
+    top: 20px; 
+    right: 30px; 
+    width: 50px; 
+    height: auto;
+} */
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .contact-page {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 5%;
+    }
+
+    .contact-info-section,
+    .contact-form-section {
+        flex-basis: 100%;
+        width: 100%;
+        max-width: 600px; /* Max width for centered content on smaller screens */
+        padding-top: 20px;
+    }
+
+    .contact-info-section h1 {
+        font-size: 3.5em;
+        text-align: center;
+    }
+    .contact-details {
+        text-align:center;
+    }
+    .social-media {
+        text-align:center;
+    }
+
+    .form-container {
+        margin-bottom: 30px;
+        /* Consider simplifying or removing clip-path for smaller screens if it causes issues */
+        clip-path: none; 
+        border-radius: 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .contact-info-section h1 {
+        font-size: 2.8em;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    header nav ul {
+        gap: 20px;
+    }
+
+    .form-container {
+        padding: 30px 25px;
+    }
+
+    .contact-page {
+        padding: 20px 3%;
+    }
+} 
